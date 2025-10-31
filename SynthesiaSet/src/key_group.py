@@ -28,6 +28,7 @@ class KeyGroup:
 
         :param measure: Piano measurements like thickness of keys etc.
         """
+
         self.width = 0  # Total mesh width
         self.n_black_keys = 0
         self.n_white_keys = 0
@@ -45,6 +46,7 @@ class KeyGroup:
 
         :return: Key group instance.
         """
+
         method_name = cls._GROUP_DISPATCH[key_group_type]
         return getattr(cls, method_name)(measure)
 
@@ -61,6 +63,7 @@ class KeyGroup:
 
         :return: Merged key group.
         """
+
         total_width = left.width + right.width
 
         left_shift = -(total_width - left.width) / 2
@@ -88,6 +91,7 @@ class KeyGroup:
 
         :return: Big merged key group.
         """
+
         merged_group = cls(groups[0].measure)
         for group in groups:
             merged_group = cls.merge(merged_group, group)
@@ -99,6 +103,7 @@ class KeyGroup:
 
         :param x_translation: Translation value.
         """
+
         for mesh in self.white_key_meshes:
             mesh.apply_translation([x_translation, 0, 0])
         for mesh in self.black_key_meshes:
@@ -125,6 +130,7 @@ class KeyGroup:
         :param left_indent: How far apart the thin top part is to the outermost left edge.
         :param right_indent: How far apart the thin top part is to the outermost right edge.
         """
+
         # Create the thick bottom part (need to remove one half_space in height)
         bottom = trimesh.creation.box(
             extents=[
@@ -166,8 +172,9 @@ class KeyGroup:
         """
         Magic function which creates a parameterized black key.
 
-        :param top_offset: Group-local translation on x-axis.
+        :param x_translation: Group-local translation on x-axis.
         """
+
         # Remove a half-width from left, right and bottom. Spacing has no influence on
         # top alignment of a black key.
         black = trimesh.creation.box(
@@ -199,6 +206,7 @@ class KeyGroup:
 
         :return: Key group with 3 whites and 2 blacks.
         """
+
         black_offset = (
             measure.white_thin_bottom - measure.black_width
         ) / 2 + measure.group_3_ratio * measure.black_width
@@ -227,6 +235,7 @@ class KeyGroup:
 
         :return: Key group with 4 whites and 3 blacks.
         """
+
         black_offset = measure.white_thin_bottom + (measure.group_4_ratio - 0.5) * measure.black_width
         inner_offset = (1 - measure.group_4_ratio) * measure.black_width
         outer_offset = measure.group_4_ratio * measure.black_width
@@ -259,6 +268,7 @@ class KeyGroup:
 
         :return: Key group with 7 whites and 5 blacks.
         """
+
         left = cls.create_3_group(measure)
         right = cls.create_4_group(measure)
         return cls.merge(left, right)
@@ -281,9 +291,11 @@ class KeyGroup:
         """
         Create key group of two whites and single black in the middle.
 
-        :param measure: Measuremeents used for the group.
+        :param measure: Measurements used for the group.
+
         :return: Key group with 2 whites and 1 black in center.
         """
+
         white_translation_1 = -measure.white_thin_bottom / 2
         white_translation_2 = -white_translation_1
 
@@ -296,10 +308,11 @@ class KeyGroup:
 
     def get_trimesh(self) -> tuple[Trimesh, Trimesh]:
         """
-        Merges all white and black keys in a group into two seperate trimesh Meshes.
+        Merges all white and black keys in a group into two separate trimesh Meshes.
 
         :return: White and black keys trimesh mesh.
         """
+
         whites = trimesh.util.concatenate(self.white_key_meshes)
         blacks = trimesh.util.concatenate(self.black_key_meshes)
 

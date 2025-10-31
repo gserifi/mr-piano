@@ -24,11 +24,12 @@ dependencies = [
     "tqdm==4.67.1",
     # Core
     "numpy==2.3.4",
+    "scipy==1.16.3",
     "mitsuba==3.7.1",
     "drjit==1.2.0",
     "trimesh==4.9.0",
     "manifold3d==3.2.1",
-    "fast_simplifiction==0.1.12",
+    "fast_simplification==0.1.12",
 ]
 authors = [
     {name = "Matan Davidi"},

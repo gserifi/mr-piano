@@ -1,3 +1,4 @@
+import os
 import math
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -9,7 +10,8 @@ import tyro
 from PIL import Image
 from tqdm import tqdm
 
-mi.set_variant("scalar_rgb")  # call this before other Mitsuba imports
+mi_variant = os.getenv("MI_VARIANT", "scalar_rgb")
+mi.set_variant(mi_variant)  # call this before other Mitsuba imports
 
 from src.config import SynthesiaGeneration, SynthesiaVisualization, configs
 from src.scene import Scene

@@ -13,8 +13,8 @@ class CameraConfig:
     height: int = 480
     """Image height in pixels."""
 
-    quality_preset: Literal["low", "medium", "high"] | None = None
-    """Can be used instead of width and height. low: 640x480, medium: 1920x1440, high: 3840x2880."""
+    quality_preset: Literal["ViT", "low", "medium", "high"] | None = None
+    """Can be used instead of width and height. ViT: 304x224, low: 640x480, medium: 1920x1440, high: 3840x2880."""
 
     # todo: figure out better parameters
     fov_range: tuple[float, float] = field(default_factory=lambda: (30, 60))
@@ -32,6 +32,7 @@ class CameraConfig:
     def __post_init__(self):
         if self.quality_preset is not None:
             self.width, self.height = {
+                "ViT": (304, 224),
                 "low": (640, 480),
                 "medium": (1920, 1440),
                 "high": (3840, 2880),
