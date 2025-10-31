@@ -66,7 +66,7 @@ class Piano:
         groups = self.piano_type.to_key_groups()
 
         merged = KeyGroup.merge_all(list(map(lambda g: KeyGroup.materialize(g, self.measure), groups)))
-        white_mesh, black_mesh = merged.get_merged_mesh()
+        white_mesh, black_mesh = merged.get_trimesh()
 
         # scale uniformly
         white_mesh.apply_scale(1.0 / merged.width)
@@ -110,11 +110,11 @@ class Piano:
         white_bsdf = {
             "type": "plastic",
             "diffuse_reflectance": {"type": "rgb", "value": [1.0, 1.0, 1.0]},
-            "specular_reflectance": {"type": "rgb", "value": [0.1, 0.1, 0.1]},
+            "specular_reflectance": {"type": "rgb", "value": [0.4, 0.4, 0.4]},
         }
         black_bsdf = {
             "type": "plastic",
-            "diffuse_reflectance": {"type": "rgb", "value": [0.1, 0.1, 0.1]},
+            "diffuse_reflectance": {"type": "rgb", "value": [0.05, 0.05, 0.05]},
             "specular_reflectance": {"type": "rgb", "value": [0.1, 0.1, 0.1]},
         }
 
