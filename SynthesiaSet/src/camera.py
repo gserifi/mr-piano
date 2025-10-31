@@ -54,9 +54,9 @@ class Camera:
         y = distance * np.sin(el)
         z = distance * np.cos(az) * np.cos(el)
 
-        origin = mi.Point3f([x, y, z])
-        target = mi.Point3f([0, 0, 0])
-        up = mi.Vector3f([0, 1, 0])
+        origin = mi.ScalarPoint3f([float(x), float(y), float(z)])
+        target = mi.ScalarPoint3f([0, 0, 0])
+        up = mi.ScalarVector3f([0, 1, 0])
 
         to_world = mi.ScalarTransform4f.look_at(origin=origin, target=target, up=up)
 

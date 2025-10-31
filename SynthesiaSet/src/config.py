@@ -125,6 +125,9 @@ class SynthesiaGeneration:
     scene: SceneConfig = field(default_factory=SceneConfig)
     """Scene configuration."""
 
+    n_jobs: int = 1
+    """Number of parallel jobs to use for generation."""
+
     seed: int = 0
     """Random seed for reproducibility."""
 
