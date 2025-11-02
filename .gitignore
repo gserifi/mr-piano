@@ -183,3 +183,5 @@ SynthesiaSet/*.png
 SynthesiaSet/outputs
 SynthesiaSet/envmaps
 SynthesiaSet/debug
+SynthesiaSet/perception_outputs
+SynthesiaSet/perception/test

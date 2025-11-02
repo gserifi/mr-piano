@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [tool.hatch.build]
-include = ["src/**/*.py"]
+include = ["src/**/*.py", "perception/**/*.py"]
 
 [tool.black]
 line-length = 120
@@ -30,6 +30,14 @@ dependencies = [
     "trimesh==4.9.0",
     "manifold3d==3.2.1",
     "fast_simplification==0.1.12",
+    # Core Perception
+#    "torch", # Install Manually
+#    "torchvision", # Install Manually
+#    "lightning", # Install Manually
+    "transformers==4.57.1",
+    "einops==0.8.1",
+    "torchinfo==1.8.0",
+    "tensorboard==2.20.0",
 ]
 authors = [
     {name = "Matan Davidi"},
@@ -42,3 +50,4 @@ readme = "README.md"
 
 [project.scripts]
 synthesia = "main:entrypoint"
+synthesia-perception = "perception.train:entrypoint"
