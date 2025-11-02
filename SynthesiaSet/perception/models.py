@@ -125,7 +125,7 @@ class ConvTransposeDetector(Detector):
 
 class ConvShuffleDetector(Detector):
     """
-    Keypoint detector using transposed convolutions for upsampling.
+    Keypoint detector using sub-pixel convolution for upsampling.
     """
 
     def __init__(
